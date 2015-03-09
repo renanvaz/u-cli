@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+$loader = include '../vendor/autoload.php';
+$loader->add('ULib\\CLI\\', '../');
+
+use ULib\CLI\Command;
+use Symfony\Component\Console\Application;
+
+$console = new Application('U', '@package_version@');
+$console->add(new Command\Hello);
+$console->run();

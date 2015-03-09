@@ -1,0 +1,21 @@
+{
+    "name": "reananvaz/u-cli",
+    "description": "CLI version of U Lib",
+    "require": {
+        "symfony/console": "~3.0@dev",
+        "renanvaz/u": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Renan Vaz",
+            "email": "renan.c.vaz@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "ULib\\": "src/"
+        }
+    }
+}

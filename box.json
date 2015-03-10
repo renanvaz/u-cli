@@ -3,9 +3,6 @@
     "directories": [
         "src"
     ],
-    "files": [
-        "LICENSE"
-    ],
     "finder": [
         {
             "name": "*.php",
@@ -14,7 +11,7 @@
         }
     ],
     "git-version": "package_version",
-    "main": "bin/u",
-    "output": "u.phar",
+    "main": "src/bin/u",
+    "output": "/etc/u.phar",
     "stub": true
 }

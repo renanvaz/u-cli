@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-$loader = include '../vendor/autoload.php';
-$loader->add('ULib\\CLI\\', '../');
+$loader = require __DIR__.'/../../vendor/autoload.php';
+$loader->add('ULib\\CLI\\', __DIR__.'/../');
 
 use ULib\CLI\Command;
 use Symfony\Component\Console\Application;

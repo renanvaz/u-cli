@@ -8,5 +8,6 @@ use ULib\CLI\Command;
 use Symfony\Component\Console\Application;
 
 $console = new Application('U', '@package_version@');
-$console->add(new Command\Hello);
+$console->add(new Command\Load);
+//$console->add(new Command\Update);
 $console->run();

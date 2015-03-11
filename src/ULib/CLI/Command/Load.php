@@ -94,7 +94,7 @@ class Load extends Command
                     UCore::load($file);
                 }
 
-                $output->write(' '.$this->_execute($input, $output)."          \r");
+                $output->write($this->_execute($input, $output)."          \r");
                 sleep(1);
             }
         } else {

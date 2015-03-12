@@ -34,13 +34,13 @@ class Load extends Command
             )
             ->addOption(
                'summary',
-               null,
+               's',
                InputOption::VALUE_NONE,
                'If set, the summary report will be returned'
             )
             ->addOption(
                'watch',
-               null,
+               'w',
                InputOption::VALUE_NONE,
                'If set, the summary report will be watched on live'
             );
@@ -56,23 +56,33 @@ class Load extends Command
     {
         $stdOut = '';
 
-        if (UCore::getBool()) {
-            $stdOut .= '<info>OK!</info>';
-        } else {
-            $stdOut .= '<error>Doh!</error>';
-        }
+        try {
+            UCore::reset();
 
-        if ($input->getOption('summary')) {
-            $report = json_decode(UCore::getJSON());
-            $ok     = $report->summary->asserts->ok;
-            $nok    = $report->summary->asserts->nok;
-            $total  = $ok + $nok;
+            foreach ($input->getArgument('files') as $file) {
+                UCore::load($file);
+            }
 
-            $stdOut .= ' '.$total.' asserts. '.$ok.' passed and '.$nok.' failed.';
-        }
+            if (UCore::getBool()) {
+                $stdOut .= '<info>OK!</info>';
+            } else {
+                $stdOut .= '<error>Doh!</error>';
+            }
 
-        if ($jsonFile = $input->getOption('json')) {
-            file_put_contents($jsonFile, UCore::getJSON());
+            if ($input->getOption('summary')) {
+                $report = json_decode(UCore::getJSON());
+                $ok     = $report->summary->asserts->ok;
+                $nok    = $report->summary->asserts->nok;
+                $total  = $ok + $nok;
+
+                $stdOut .= ' '.$total.' asserts. '.$ok.' passed and '.$nok.' failed.';
+            }
+
+            if ($jsonFile = $input->getOption('json')) {
+                file_put_contents($jsonFile, UCore::getJSON());
+            }
+        } catch (Exception $e) {
+            $stdOut = '<error>Oh crap! Wait a second...</error>';
         }
 
         return $stdOut;
@@ -87,14 +97,15 @@ class Load extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption('watch')) {
+            $lastLineLength = 0;
             while (true) {
-                UCore::reset();
+                $stdout = $this->_execute($input, $output).' <comment>(type Ctrl + C to stop)</comment>';
 
-                foreach ($input->getArgument('files') as $file) {
-                    UCore::load($file);
-                }
+                $output->write("\x0D");
+                $output->write(str_pad($stdout, $lastLineLength, "\x20", STR_PAD_RIGHT));
 
-                $output->write($this->_execute($input, $output)."          \r");
+                $lastLineLength = strlen($stdout);
+
                 sleep(1);
             }
         } else {

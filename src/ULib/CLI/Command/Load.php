@@ -12,6 +12,12 @@ use ULib\UCore;
 
 class Load extends Command
 {
+    private $_files;
+    private $_autoloader;
+    private $_out;
+    private $_summary;
+    private $_watch;
+
     /**
      * Configure the command
      * @return void
@@ -27,10 +33,16 @@ class Load extends Command
                 'List of filenames'
             )
             ->addOption(
-               'json',
+               'autoloader',
                null,
                InputOption::VALUE_REQUIRED,
-               'If set, the complete report will be returned in a JSON string'
+               'Filename. If set, it will be included firt and only one time'
+            )
+            ->addOption(
+               'out',
+               null,
+               InputOption::VALUE_REQUIRED,
+               'Filename. If set, the complete report will be saved in a JSON string'
             )
             ->addOption(
                'summary',
@@ -59,7 +71,7 @@ class Load extends Command
         try {
             UCore::reset();
 
-            foreach ($input->getArgument('files') as $file) {
+            foreach ($this->_files as $file) {
                 UCore::load($file);
             }
 
@@ -69,7 +81,7 @@ class Load extends Command
                 $stdOut .= '<error>Doh!</error>';
             }
 
-            if ($input->getOption('summary')) {
+            if ($this->_summary) {
                 $report = json_decode(UCore::getJSON());
                 $ok     = $report->summary->asserts->ok;
                 $nok    = $report->summary->asserts->nok;
@@ -78,8 +90,8 @@ class Load extends Command
                 $stdOut .= ' '.$total.' asserts. '.$ok.' passed and '.$nok.' failed.';
             }
 
-            if ($jsonFile = $input->getOption('json')) {
-                file_put_contents($jsonFile, UCore::getJSON());
+            if ($this->_out) {
+                file_put_contents($this->_out, UCore::getJSON());
             }
         } catch (Exception $e) {
             $stdOut = '<error>Oh crap! Wait a second...</error>';
@@ -96,8 +108,18 @@ class Load extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if ($input->getOption('watch')) {
+        if ($this->_autoloader = $input->getOption('autoloader')) {
+            require $this->_autoloader;
+        }
+
+        $this->_files       = $input->getArgument('files');
+        $this->_out         = $input->getOption('out');
+        $this->_summary     = $input->getOption('summary');
+        $this->_watch       = $input->getOption('watch');
+
+        if ($this->_watch) {
             $lastLineLength = 0;
+
             while (true) {
                 $stdout = $this->_execute($input, $output).' <comment>(type Ctrl + C to stop)</comment>';
 

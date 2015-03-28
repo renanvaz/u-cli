@@ -182,12 +182,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "87b54b460febed69726c781ab67462084e97a105"
+                "reference": "0c16b51b9ca92c14428a797a5ce37daa16bb151d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/87b54b460febed69726c781ab67462084e97a105",
-                "reference": "87b54b460febed69726c781ab67462084e97a105",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/0c16b51b9ca92c14428a797a5ce37daa16bb151d",
+                "reference": "0c16b51b9ca92c14428a797a5ce37daa16bb151d",
                 "shasum": ""
             },
             "require": {
@@ -240,7 +240,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2014-08-25 02:48:14"
+            "time": "2015-03-27 22:00:19"
         },
         {
             "name": "renanvaz/u",
@@ -248,12 +248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/renanvaz/u.git",
-                "reference": "4d21fa60f81fd9bd76c9ccd507786dacb77ceb3a"
+                "reference": "36d85fa2d292957394a3e91c694e7e3d84b30856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/renanvaz/u/zipball/4d21fa60f81fd9bd76c9ccd507786dacb77ceb3a",
-                "reference": "4d21fa60f81fd9bd76c9ccd507786dacb77ceb3a",
+                "url": "https://api.github.com/repos/renanvaz/u/zipball/36d85fa2d292957394a3e91c694e7e3d84b30856",
+                "reference": "36d85fa2d292957394a3e91c694e7e3d84b30856",
                 "shasum": ""
             },
             "require": {
@@ -276,7 +276,7 @@
                 }
             ],
             "description": "U - Unit Test Lib",
-            "time": "2015-03-08 07:57:40"
+            "time": "2015-03-25 22:04:32"
         },
         {
             "name": "seld/jsonlint",
@@ -331,12 +331,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "d224b2382e926128015e3d60321bbe52e1560f19"
+                "reference": "63f72ca14023d1298ed5aea219d3adcdd025ac58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/d224b2382e926128015e3d60321bbe52e1560f19",
-                "reference": "d224b2382e926128015e3d60321bbe52e1560f19",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/63f72ca14023d1298ed5aea219d3adcdd025ac58",
+                "reference": "63f72ca14023d1298ed5aea219d3adcdd025ac58",
                 "shasum": ""
             },
             "require": {
@@ -380,7 +380,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-07 07:44:26"
+            "time": "2015-03-24 17:09:17"
         }
     ],
     "packages-dev": [],
